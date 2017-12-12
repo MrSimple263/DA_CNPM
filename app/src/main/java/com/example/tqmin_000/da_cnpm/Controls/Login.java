@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.tqmin_000.da_cnpm.R;
 
@@ -24,6 +25,8 @@ public class Login extends AppCompatActivity {
         if(isuser==true){
             finish();
             Ghivaofiletxt(username.getText().toString().trim(),pass.getText().toString().trim());
+        }else {
+            Toast.makeText(Login.this,"Ten tai khoan hoac mat khau khong dung",Toast.LENGTH_SHORT).show();
         }
 
     }
@@ -40,6 +43,7 @@ public class Login extends AppCompatActivity {
 
     }
     public boolean Isuser(String username,String pass){
+
         return true;
     }
 }
