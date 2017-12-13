@@ -7,16 +7,9 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import com.example.tqmin_000.da_cnpm.Model.SAO;
 import com.example.tqmin_000.da_cnpm.R;
-
 import java.util.ArrayList;
-
-/**
- * Created by tqmin_000 on 12/13/2017.
- */
-
 public class Danhgia extends AppCompatActivity {
     TextView ten,dongia;
     SAO sao1,sao2,sao3,sao4,sao5;
