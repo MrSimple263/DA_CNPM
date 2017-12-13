@@ -6,8 +6,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <ImageButton
-        android:id="@+id/imageButton"
+    <ImageView
+        android:id="@+id/danhgia_img"
         android:layout_width="97dp"
         android:layout_height="97dp"
         android:layout_marginStart="28dp"
@@ -17,73 +17,78 @@
         app:srcCompat="@mipmap/ic_launcher" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/danhgia_ten"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginTop="16dp"
         android:text="TextView"
-        app:layout_constraintStart_toEndOf="@+id/imageButton"
+        app:layout_constraintStart_toEndOf="@+id/danhgia_img"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/danhgia_gia"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="76dp"
         android:layout_marginTop="20dp"
         android:text="TextView"
-        app:layout_constraintStart_toEndOf="@+id/imageButton"
-        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+        app:layout_constraintStart_toEndOf="@+id/danhgia_img"
+        app:layout_constraintTop_toBottomOf="@+id/danhgia_ten" />
 
     <ImageButton
-        android:id="@+id/imageButton2"
+        android:id="@+id/danhgia_sao1"
         android:layout_width="wrap_content"
         android:layout_height="44dp"
         android:layout_marginStart="48dp"
         android:layout_marginTop="188dp"
+        android:scaleType="fitXY"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@android:drawable/btn_star_big_off" />
+        />
 
     <ImageButton
-        android:id="@+id/imageButton3"
+        android:id="@+id/danhgia_sao2"
         android:layout_width="wrap_content"
         android:layout_height="44dp"
         android:layout_marginTop="188dp"
-        app:layout_constraintStart_toEndOf="@+id/imageButton2"
+        android:scaleType="fitXY"
+        app:layout_constraintStart_toEndOf="@+id/danhgia_sao1"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@android:drawable/btn_star_big_off" />
+       />
 
     <ImageButton
-        android:id="@+id/imageButton4"
+        android:id="@+id/danhgia_sao3"
         android:layout_width="wrap_content"
         android:layout_height="44dp"
         android:layout_marginTop="188dp"
-        app:layout_constraintStart_toEndOf="@+id/imageButton3"
+        android:scaleType="fitXY"
+        app:layout_constraintStart_toEndOf="@+id/danhgia_sao2"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@android:drawable/btn_star_big_off" />
+         />
 
     <ImageButton
-        android:id="@+id/imageButton5"
+        android:id="@+id/danhgia_sao4"
         android:layout_width="wrap_content"
         android:layout_height="44dp"
         android:layout_marginTop="188dp"
-        app:layout_constraintStart_toEndOf="@+id/imageButton4"
+        android:scaleType="fitXY"
+        app:layout_constraintStart_toEndOf="@+id/danhgia_sao3"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@android:drawable/btn_star_big_off" />
+         />
 
     <ImageButton
-        android:id="@+id/imageButton6"
+        android:id="@+id/danhgia_sao5"
         android:layout_width="wrap_content"
         android:layout_height="44dp"
         android:layout_marginTop="188dp"
-        app:layout_constraintStart_toEndOf="@+id/imageButton5"
+        android:scaleType="fitXY"
+        app:layout_constraintStart_toEndOf="@+id/danhgia_sao4"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@android:drawable/btn_star_big_off" />
+         />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/danhgia_btn"
         android:layout_width="wrap_content"
         android:layout_height="40dp"
         android:layout_marginStart="256dp"
@@ -94,5 +99,8 @@
         android:textStyle="bold|italic"
 
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageButton4" />
+        app:layout_constraintTop_toBottomOf="@+id/danhgia_sao3" />
+
+
+
 </android.support.constraint.ConstraintLayout>
