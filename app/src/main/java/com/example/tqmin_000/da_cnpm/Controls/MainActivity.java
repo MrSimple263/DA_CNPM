@@ -20,12 +20,15 @@ import android.view.MenuItem;
 import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.tqmin_000.da_cnpm.Adapter.MonAnAD;
 import com.example.tqmin_000.da_cnpm.Model.ConnectionClass;
+import com.example.tqmin_000.da_cnpm.Model.DocGhiFile;
 import com.example.tqmin_000.da_cnpm.Model.FOOD;
 import com.example.tqmin_000.da_cnpm.Model.NEWS;
+import com.example.tqmin_000.da_cnpm.Model.USER;
 import com.example.tqmin_000.da_cnpm.R;
 
 import java.sql.Connection;
@@ -42,6 +45,8 @@ public class MainActivity extends AppCompatActivity
         ListView listView;
         MonAnAD monAnAD;
         ImageView tintuc;
+        USER user=new USER();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -98,6 +103,48 @@ public class MainActivity extends AppCompatActivity
                 startActivity(intent);
             }
         });
+        /// Kiem tra có Dang nhap trươc chua
+        DocGhiFile docGhiFile=new DocGhiFile();
+        String iduser=docGhiFile.docfile(MainActivity.this).toString();
+//        Log.e("ERR",iduser);
+            Connection con=null;
+            con=connectionClass.CONN();
+            String query="select * from USERS where IDUSER='"+iduser+"'";
+            if(!iduser.equals(-1)) {
+                try {
+                    PreparedStatement stm = con.prepareStatement(query);
+                    ResultSet rs = stm.executeQuery();
+                    while (rs.next()) {
+                        user.setIduser(rs.getInt(1));
+                        user.setUsername(rs.getString(2));
+                        user.setPass(rs.getString(3));
+                        user.setFullname(rs.getString(4));
+                        user.setEmail(rs.getString(5));
+                        user.setDiachi(rs.getString(6));
+                        user.setSdt(rs.getString(7));
+                        user.setImg(rs.getString(8));
+                        user.setRole(rs.getString(9));
+                        user.setTinhtrang(rs.getString(10));
+                        user.setSex(rs.getString(11));
+                        Log.e("ERR",user.getFullname());
+                    }
+                } catch (SQLException ex) {
+                    Log.e("ERR", ex.getMessage());
+                }
+            }
+        ///gan cac gia tri personal
+        navigationView.setNavigationItemSelectedListener(this);
+        View header=navigationView.getHeaderView(0);
+        TextView Ten=(TextView)header.findViewById(R.id.tenper);
+        ImageView imgdaidien=(ImageView) header.findViewById(R.id.img_personnal);
+        Ten.setText(user.getFullname());
+        if(user.getImg()!=null) {
+            byte[] decodeString = Base64.decode(user.getImg(), Base64.DEFAULT);
+            Bitmap decodebitmap = BitmapFactory.decodeByteArray(decodeString,
+                    0, decodeString.length);
+            imgdaidien.setImageBitmap(decodebitmap);
+        }
+
 
     }
 
@@ -149,7 +196,15 @@ public class MainActivity extends AppCompatActivity
                 break;
             }
             case  R.id.nav_logout:{
-
+                DocGhiFile docGhiFile=new DocGhiFile();
+                docGhiFile.ghifile(MainActivity.this);
+                NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+                navigationView.setNavigationItemSelectedListener(this);
+                View header=navigationView.getHeaderView(0);
+                TextView Ten=(TextView)header.findViewById(R.id.tenper);
+                ImageView imgdaidien=(ImageView) header.findViewById(R.id.img_personnal);
+                Ten.setText(null);
+                imgdaidien.setImageResource(R.mipmap.ic_launcher);
                 break;
             }
             case R.id.nav_about:{

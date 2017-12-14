@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import com.example.tqmin_000.da_cnpm.Model.ConnectionClass;
 import com.example.tqmin_000.da_cnpm.Model.DocGhiFile;
+import com.example.tqmin_000.da_cnpm.Model.USER;
 import com.example.tqmin_000.da_cnpm.R;
 
 import java.io.BufferedReader;
@@ -31,6 +32,8 @@ public class Login extends AppCompatActivity {
     Button dangnhap,dangky;
     Connection con=null;
     int iduser=-1;
+
+    String iduser1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,6 +44,12 @@ public class Login extends AppCompatActivity {
         connectionClass= new ConnectionClass();
         dangnhap=(Button) findViewById(R.id.button);
         dangky=(Button) findViewById(R.id.button2);
+        USER user=new USER();
+        kiemtra(user);
+        if(!iduser1.equals(-1)){
+            username.setText(user.getUsername());
+            pass.setText(user.getPass());
+        }
 
         dangnhap.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -50,7 +59,8 @@ public class Login extends AppCompatActivity {
                     DocGhiFile docGhiFile=new DocGhiFile(iduser);
                    docGhiFile.ghifile(Login.this);
                    Toast.makeText(Login.this,"Đăng nhập thành công",Toast.LENGTH_SHORT).show();
-                   finish();
+                   Intent intent=new Intent(Login.this,MainActivity.class);
+                   startActivity(intent);
                 }else {
                     Toast.makeText(Login.this,"Ten tai khoan hoac mat khau khong dung",Toast.LENGTH_SHORT).show();
                 }
@@ -84,5 +94,33 @@ public class Login extends AppCompatActivity {
             return  false;
         }
     }
-
+    public void kiemtra(USER user){
+        /// Kiem tra có Dang nhap trươc chua
+        DocGhiFile docGhiFile=new DocGhiFile();
+        iduser1=docGhiFile.docfile(Login.this).toString();
+        Connection con=null;
+        con=connectionClass.CONN();
+        String query="select * from USERS where IDUSER='"+iduser1+"'";
+        if(!iduser1.equals(-1)) {
+            try {
+                PreparedStatement stm = con.prepareStatement(query);
+                ResultSet rs = stm.executeQuery();
+                while (rs.next()) {
+                    user.setIduser(rs.getInt(1));
+                    user.setUsername(rs.getString(2));
+                    user.setPass(rs.getString(3));
+                    user.setFullname(rs.getString(4));
+                    user.setEmail(rs.getString(5));
+                    user.setDiachi(rs.getString(6));
+                    user.setSdt(rs.getString(7));
+                    user.setImg(rs.getString(8));
+                    user.setRole(rs.getString(9));
+                    user.setTinhtrang(rs.getString(10));
+                    user.setSex(rs.getString(11));
+                }
+            } catch (SQLException ex) {
+                Log.e("ERR", ex.getMessage());
+            }
+        }
+    }
 }

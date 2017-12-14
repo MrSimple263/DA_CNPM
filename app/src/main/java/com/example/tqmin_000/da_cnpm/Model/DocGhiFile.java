@@ -26,7 +26,6 @@ public class DocGhiFile {
         try {
             BufferedReader bReader = new BufferedReader(new InputStreamReader(context.openFileInput("user.txt")));
             String line;
-
             while ((line = bReader.readLine()) != null) {
                 text.append(line);
             }

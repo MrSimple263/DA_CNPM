@@ -15,6 +15,7 @@ public class USER {
     String img;
     String role;
     String tinhtrang;
+    String sex;
 
     public USER() {
     }
@@ -97,5 +98,13 @@ public class USER {
 
     public void setTinhtrang(String tinhtrang) {
         this.tinhtrang = tinhtrang;
+    }
+
+    public String getSex() {
+        return sex;
+    }
+
+    public void setSex(String sex) {
+        this.sex = sex;
     }
 }
