@@ -8,25 +8,32 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Base64;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.example.tqmin_000.da_cnpm.Model.ConnectionClass;
 import com.example.tqmin_000.da_cnpm.R;
 import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 
 public class Dangki extends AppCompatActivity {
     TextView username,pass,fullname,birthday,add,phone,email,infor;
     ImageView imageView;
     RadioGroup group;
     Button dangky;
-    String sex;
+    String sex="1";
     byte[] byteArray;
-    String encodedImage;
+    String encodedImage=null;
+    ConnectionClass connectionClass=new ConnectionClass();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,26 +41,11 @@ public class Dangki extends AppCompatActivity {
         username=(TextView) findViewById(R.id.editText6);
         pass=(TextView) findViewById(R.id.editText8);
         fullname=(TextView) findViewById(R.id.editText7);
-        birthday=(TextView) findViewById(R.id.editText9);
         add=(TextView) findViewById(R.id.editText10);
         phone=(TextView) findViewById(R.id.editText11);
         email=(TextView) findViewById(R.id.editText12);
-        infor=(TextView) findViewById(R.id.editText13);
         group=(RadioGroup) findViewById(R.id.sex);
         dangky=(Button) findViewById(R.id.button8);
-        int idchecked=group.getCheckedRadioButtonId();
-        switch (idchecked){
-            case R.id.radioButton2://nam
-            {
-                sex="1";
-                break;
-            }
-            case R.id.radioButton://nu
-            {
-                sex="0";
-                break;
-            }
-        }
         imageView=(ImageView) findViewById(R.id.imageView2);
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -64,7 +56,23 @@ public class Dangki extends AppCompatActivity {
         dangky.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                Connection con=null;
+                con=connectionClass.CONN();
+                int idchecked=group.getCheckedRadioButtonId();
+                if(idchecked==R.id.radioButton)
+                    sex="0";
+                else sex="1";
+                String query="exec user_insert '"+username.getText().toString().trim()+"','"+pass.getText().toString().trim()+"'" +
+                        ",'"+fullname.getText().toString().trim()+"','"+email.getText().toString().trim()+"'" +
+                        ",'"+add.getText().toString().trim()+"','"+phone.getText().toString().trim()+"'," +
+                        "'"+encodedImage+"','0','0','"+sex+"'";
+                try{
+                    PreparedStatement stm=con.prepareStatement(query);
+                    stm.executeUpdate();
+                    Toast.makeText(Dangki.this,"Đăng Kí Thành Công",Toast.LENGTH_SHORT).show();
+                }catch (SQLException ex){
+                    Log.e("ERR",ex.getMessage());
+                }
             }
         });
     }
@@ -85,7 +93,6 @@ public class Dangki extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-
         if (resultCode == RESULT_OK) {
             Bitmap originBitmap = null;
             Uri selectedImage = data.getData();
@@ -94,9 +101,7 @@ public class Dangki extends AppCompatActivity {
                 imageStream = getContentResolver().openInputStream(
                         selectedImage);
                 originBitmap = BitmapFactory.decodeStream(imageStream);
-
             } catch (FileNotFoundException e) {
-
             }
             if (originBitmap != null) {
                 this.imageView.setImageBitmap(originBitmap);
