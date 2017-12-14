@@ -16,12 +16,10 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.example.tqmin_000.da_cnpm.Model.ConnectionClass;
 import com.example.tqmin_000.da_cnpm.Model.DocGhiFile;
 import com.example.tqmin_000.da_cnpm.Model.USER;
 import com.example.tqmin_000.da_cnpm.R;
-
 import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
@@ -29,11 +27,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
-/**
- * Created by tqmin_000 on 12/14/2017.
- */
-
 public class Chinhsuathongtin extends AppCompatActivity {
     TextView username,pass,fullname,add,phone,email,infor;
     ImageView imageView;
