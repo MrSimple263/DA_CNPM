@@ -75,7 +75,7 @@ public class ConnectionClass extends AppCompatActivity{
 
             Class.forName(classs);
             ConnURL = "jdbc:jtds:sqlserver://192.168.1.4;"
-                    + "databaseName=CNPM;user=minh;password=123;";
+                    + "databaseName=CNPM1;user=minh;password=123;";
             conn = DriverManager.getConnection(ConnURL);
         } catch (SQLException se) {
             Log.e("ERRO", se.getMessage());

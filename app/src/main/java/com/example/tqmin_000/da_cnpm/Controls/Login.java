@@ -62,7 +62,7 @@ public class Login extends AppCompatActivity {
                    Intent intent=new Intent(Login.this,MainActivity.class);
                    startActivity(intent);
                 }else {
-                    Toast.makeText(Login.this,"Ten tai khoan hoac mat khau khong dung",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Login.this,"Ten tai khoan hoac mat khau khong dung hoặc tài khoản của bạn đang bị khóa",Toast.LENGTH_SHORT).show();
                 }
             }
         });

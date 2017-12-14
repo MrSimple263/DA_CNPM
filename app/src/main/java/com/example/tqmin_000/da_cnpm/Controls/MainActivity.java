@@ -63,29 +63,29 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
         //load MON ĂN
-        listView=(ListView) findViewById(R.id.list_noibat);
+        listView = (ListView) findViewById(R.id.list_noibat);
         Loadthucan();
-        monAnAD=new MonAnAD(MainActivity.this,R.layout.dongnoibat,foods);
+        monAnAD = new MonAnAD(MainActivity.this, R.layout.dongnoibat, foods);
         listView.setAdapter(monAnAD);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Intent intent=new Intent(MainActivity.this,Chitietmonan.class);
-                Bundle bundle=new Bundle();
-                bundle.putString("ten",foods.get(i).getName());
-                bundle.putString("infor",foods.get(i).getInfor());
-                bundle.putString("img",foods.get(i).getImg());
-                bundle.putFloat("gia",foods.get(i).getGiamoi());
-                bundle.putInt("idmonan",foods.get(i).getIdfood());
-                intent.putExtra("package",bundle);
+                Intent intent = new Intent(MainActivity.this, Chitietmonan.class);
+                Bundle bundle = new Bundle();
+                bundle.putString("ten", foods.get(i).getName());
+                bundle.putString("infor", foods.get(i).getInfor());
+                bundle.putString("img", foods.get(i).getImg());
+                bundle.putFloat("gia", foods.get(i).getGiamoi());
+                bundle.putInt("idmonan", foods.get(i).getIdfood());
+                intent.putExtra("package", bundle);
                 startActivity(intent);
             }
         });
         //Load Tin Tuc
-        tintuc =(ImageView) findViewById(R.id.img_tintuc_tt);
-        final NEWS news=new NEWS();
+        tintuc = (ImageView) findViewById(R.id.img_tintuc_tt);
+        final NEWS news = new NEWS();
         Loadtintuc(news);
-        if(news.getImg()!=null) {
+        if (news.getImg() != null) {
             byte[] decodeString = Base64.decode(news.getImg(), Base64.DEFAULT);
             Bitmap decodebitmap = BitmapFactory.decodeByteArray(decodeString,
                     0, decodeString.length);
@@ -94,60 +94,64 @@ public class MainActivity extends AppCompatActivity
         tintuc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent=new Intent(MainActivity.this,News.class);
-                Bundle bundle=new Bundle();
-                bundle.putString("tile",news.getTile());
-                bundle.putString("infor",news.getNoidung());
-                bundle.putString("img",news.getImg());
-                intent.putExtra("package",bundle);
+                Intent intent = new Intent(MainActivity.this, News.class);
+                Bundle bundle = new Bundle();
+                bundle.putString("tile", news.getTile());
+                bundle.putString("infor", news.getNoidung());
+                bundle.putString("img", news.getImg());
+                intent.putExtra("package", bundle);
                 startActivity(intent);
             }
         });
         /// Kiem tra có Dang nhap trươc chua
-        DocGhiFile docGhiFile=new DocGhiFile();
-        String iduser=docGhiFile.docfile(MainActivity.this).toString();
+        DocGhiFile docGhiFile = new DocGhiFile();
+        String iduser = docGhiFile.docfile(MainActivity.this).toString();
 //        Log.e("ERR",iduser);
-            Connection con=null;
-            con=connectionClass.CONN();
-            String query="select * from USERS where IDUSER='"+iduser+"'";
-            if(!iduser.equals(-1)) {
-                try {
-                    PreparedStatement stm = con.prepareStatement(query);
-                    ResultSet rs = stm.executeQuery();
-                    while (rs.next()) {
-                        user.setIduser(rs.getInt(1));
-                        user.setUsername(rs.getString(2));
-                        user.setPass(rs.getString(3));
-                        user.setFullname(rs.getString(4));
-                        user.setEmail(rs.getString(5));
-                        user.setDiachi(rs.getString(6));
-                        user.setSdt(rs.getString(7));
-                        user.setImg(rs.getString(8));
-                        user.setRole(rs.getString(9));
-                        user.setTinhtrang(rs.getString(10));
-                        user.setSex(rs.getString(11));
-                        Log.e("ERR",user.getFullname());
-                    }
-                } catch (SQLException ex) {
-                    Log.e("ERR", ex.getMessage());
+        Connection con = null;
+        con = connectionClass.CONN();
+        String query = "select * from USERS where IDUSER='" + iduser + "'";
+        if (!iduser.equals(-1)) {
+            try {
+                PreparedStatement stm = con.prepareStatement(query);
+                ResultSet rs = stm.executeQuery();
+                while (rs.next()) {
+                    user.setIduser(rs.getInt(1));
+                    user.setUsername(rs.getString(2));
+                    user.setPass(rs.getString(3));
+                    user.setFullname(rs.getString(4));
+                    user.setEmail(rs.getString(5));
+                    user.setDiachi(rs.getString(6));
+                    user.setSdt(rs.getString(7));
+                    user.setImg(rs.getString(8));
+                    user.setRole(rs.getString(9));
+                    user.setTinhtrang(rs.getString(10));
+                    user.setSex(rs.getString(11));
+                    Log.e("ERR", user.getFullname());
                 }
+            } catch (SQLException ex) {
+                Log.e("ERR", ex.getMessage());
             }
+        }
         ///gan cac gia tri personal
         navigationView.setNavigationItemSelectedListener(this);
-        View header=navigationView.getHeaderView(0);
-        TextView Ten=(TextView)header.findViewById(R.id.tenper);
-        ImageView imgdaidien=(ImageView) header.findViewById(R.id.img_personnal);
+        View header = navigationView.getHeaderView(0);
+        TextView Ten = (TextView) header.findViewById(R.id.tenper);
+        ImageView imgdaidien = (ImageView) header.findViewById(R.id.img_personnal);
         Ten.setText(user.getFullname());
-        if(user.getImg()!=null) {
+        if (user.getImg() != null) {
             byte[] decodeString = Base64.decode(user.getImg(), Base64.DEFAULT);
             Bitmap decodebitmap = BitmapFactory.decodeByteArray(decodeString,
                     0, decodeString.length);
             imgdaidien.setImageBitmap(decodebitmap);
         }
-
-
+        imgdaidien.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(MainActivity.this,Chinhsuathongtin.class);
+                startActivity(intent);
+            }
+        });
     }
-
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -169,8 +173,11 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
         if (id == R.id.action_cart) {
             return true;
+        }else
+            if (id == R.id.action_search) {
+            Intent intent=new Intent(MainActivity.this,Danhsachmonan.class);
+            startActivity(intent);
         }
-
         return super.onOptionsItemSelected(item);
     }
 
@@ -185,6 +192,8 @@ public class MainActivity extends AppCompatActivity
                 break;
             }
             case R.id.nav_danhmuc:{
+                Intent intent =new Intent(MainActivity.this,Danhsachmenu.class);
+                startActivity(intent);
                 break;
             }
             case R.id.nav_lichsu:{

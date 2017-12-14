@@ -7,6 +7,7 @@ package com.example.tqmin_000.da_cnpm.Model;
 public class MENU {
     int idmenu;
     String name;
+    int SL;
 
     public MENU() {
     }
@@ -25,5 +26,13 @@ public class MENU {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public int getSL() {
+        return SL;
+    }
+
+    public void setSL(int SL) {
+        this.SL = SL;
     }
 }

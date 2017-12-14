@@ -24,6 +24,9 @@
         <activity android:name=".Controls.Danhsachmonan"/>
         <activity android:name=".Controls.Chitietmonan"/>
         <activity android:name=".Controls.News"/>
+        <activity android:name=".Controls.Danhsachmenu"/>
+        <activity android:name=".Controls.Danhsachmonan2"/>
+        <activity android:name=".Controls.Chinhsuathongtin"/>
     </application>
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
