@@ -20,8 +20,8 @@
                 android:title="Lich su mua hang" />
             <item
                 android:id="@+id/nav_login"
-                android:icon="@drawable/ic_menu_send"
-                android:title="Login" />
+                android:title="Login"
+                android:icon="@drawable/ic_menu_send"/>
             <item
                 android:id="@+id/nav_logout"
                 android:title="Logout" />
