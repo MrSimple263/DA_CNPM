@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".Controls.MainActivity"
+            android:name=".Model.ConnectionClass"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
@@ -30,6 +30,7 @@
         <activity android:name=".Controls.Lichsumuahang"/>
         <activity android:name=".Controls.About"/>
         <activity android:name=".Controls.Danhgia"/>
+        <activity android:name=".Controls.MainActivity"/>
     </application>
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>

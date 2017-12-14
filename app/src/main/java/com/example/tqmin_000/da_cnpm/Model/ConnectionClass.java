@@ -14,15 +14,17 @@ import android.widget.Toast;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+
+import com.example.tqmin_000.da_cnpm.Controls.MainActivity;
 import com.example.tqmin_000.da_cnpm.R;
 
 public class ConnectionClass extends AppCompatActivity{
     static String ip;
     static String classs = "net.sourceforge.jtds.jdbc.Driver";
-    static String db = "DOAN-SACH";
+    static String db;
     static String un;
     static String password;
-    EditText ip1,name,pass;
+    EditText ip1,name,pass,data;
     Button btnkn;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,12 +34,14 @@ public class ConnectionClass extends AppCompatActivity{
         name=(EditText) findViewById(R.id.kn_name);
         pass=(EditText) findViewById(R.id.kn_pass);
         btnkn=(Button) findViewById(R.id.kn_btn);
+        data=(EditText) findViewById(R.id.editText4);
         btnkn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 ip = ip1.getText().toString().trim();
                 un =name.getText().toString().trim();
                 password =pass.getText().toString().trim();
+                db=data.getText().toString().trim();
                 StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder()
                         .permitAll().build();
                 StrictMode.setThreadPolicy(policy);
@@ -50,8 +54,8 @@ public class ConnectionClass extends AppCompatActivity{
                             + "databaseName=" + db + ";user=" + un + ";password="
                             + password + ";";
                     conn = DriverManager.getConnection(ConnURL);
-//                    Intent intent=new Intent(ConnectionClass.this,.class);
-//                    startActivity(intent);
+                    Intent intent=new Intent(ConnectionClass.this,MainActivity.class);
+                    startActivity(intent);
                 } catch (SQLException se) {
                     Toast.makeText(ConnectionClass.this,se.getMessage(),Toast.LENGTH_SHORT).show();
                 } catch (ClassNotFoundException e) {
@@ -74,8 +78,8 @@ public class ConnectionClass extends AppCompatActivity{
         try {
 
             Class.forName(classs);
-            ConnURL = "jdbc:jtds:sqlserver://192.168.1.4;"
-                    + "databaseName=CNPM2;user=minh;password=123;";
+            ConnURL = "jdbc:jtds:sqlserver://"+ip+";"
+                    + "databaseName="+db+";user="+un+";password="+password+";";
             conn = DriverManager.getConnection(ConnURL);
         } catch (SQLException se) {
             Log.e("ERRO", se.getMessage());
