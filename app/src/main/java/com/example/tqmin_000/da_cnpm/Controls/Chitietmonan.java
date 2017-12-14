@@ -37,7 +37,7 @@ public class Chitietmonan extends AppCompatActivity {
     SAO sao1,sao2,sao3,sao4,sao5;
     int SL,RATE;
     int idmonan;
-    Button btn;
+    Button btn,btnrate;
     EditText sol;
     ConnectionClass connectionClass=new ConnectionClass();
     @Override
@@ -67,7 +67,7 @@ public class Chitietmonan extends AppCompatActivity {
          idmonan=bundle.getInt("idmonan");
         ten.setText(bundle.getString("ten"));
         infor.setText(bundle.getString("infor"));
-        String imgstring=bundle.getString("img");
+        final String imgstring=bundle.getString("img");
         gia.setText(""+bundle.getFloat("gia")+"đ");
         if(imgstring!=null) {
             byte[] decodeString = Base64.decode(imgstring, Base64.DEFAULT);
@@ -101,6 +101,20 @@ public class Chitietmonan extends AppCompatActivity {
                     }
                 }
 
+            }
+        });
+
+        btnrate=(Button) findViewById(R.id.button5);
+        btnrate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(Chitietmonan.this,Danhgia.class);
+                Bundle bundle=new Bundle();
+                bundle.putString("ten",ten.getText().toString());
+                bundle.putInt("idmonan",idmonan);
+                bundle.putString("img",imgstring);
+                intent.putExtra("package",bundle);
+                startActivity(intent);
             }
         });
     }

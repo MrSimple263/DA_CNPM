@@ -26,16 +26,6 @@
         app:layout_constraintStart_toEndOf="@+id/danhgia_img"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/danhgia_gia"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="76dp"
-        android:layout_marginTop="20dp"
-        android:text="TextView"
-        app:layout_constraintStart_toEndOf="@+id/danhgia_img"
-        app:layout_constraintTop_toBottomOf="@+id/danhgia_ten" />
-
     <ImageButton
         android:id="@+id/danhgia_sao1"
         android:layout_width="wrap_content"

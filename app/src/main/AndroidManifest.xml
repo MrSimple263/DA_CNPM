@@ -29,6 +29,7 @@
         <activity android:name=".Controls.Chinhsuathongtin"/>
         <activity android:name=".Controls.Lichsumuahang"/>
         <activity android:name=".Controls.About"/>
+        <activity android:name=".Controls.Danhgia"/>
     </application>
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
