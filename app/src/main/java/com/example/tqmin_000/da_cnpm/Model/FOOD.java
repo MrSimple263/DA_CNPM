@@ -10,6 +10,9 @@ public class FOOD {
     int idmenu;
     float dongia;
     String img;
+    String infor;
+    float giamgia=0;
+    float giamoi;
 
     public FOOD() {
     }
@@ -52,5 +55,28 @@ public class FOOD {
 
     public void setImg(String img) {
         this.img = img;
+    }
+    public String getInfor() {
+        return infor;
+    }
+
+    public void setInfor(String infor) {
+        this.infor = infor;
+    }
+
+    public float getGiamgia() {
+        return giamgia;
+    }
+
+    public void setGiamgia(float giamgia) {
+        this.giamgia = giamgia;
+    }
+
+    public float getGiamoi() {
+        return giamoi;
+    }
+
+    public void setGiamoi() {
+        this.giamoi =dongia*(1-giamgia/100);
     }
 }

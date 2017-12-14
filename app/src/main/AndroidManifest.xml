@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".Controls.Tab"
+            android:name=".Controls.MainActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
@@ -20,6 +20,12 @@
             </intent-filter>
         </activity>
         <activity android:name=".Controls.Login"/>
+        <activity android:name=".Controls.Dangki"/>
+        <activity android:name=".Controls.Danhsachmonan"/>
+        <activity android:name=".Controls.Chitietmonan"/>
+        <activity android:name=".Controls.News"/>
     </application>
-
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
 </manifest>
