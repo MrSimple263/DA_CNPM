@@ -151,6 +151,13 @@ public class MainActivity extends AppCompatActivity
                 startActivity(intent);
             }
         });
+        Ten.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(MainActivity.this,Chinhsuathongtin.class);
+                startActivity(intent);
+            }
+        });
     }
     @Override
     public void onBackPressed() {
@@ -197,6 +204,8 @@ public class MainActivity extends AppCompatActivity
                 break;
             }
             case R.id.nav_lichsu:{
+                Intent intent =new Intent(MainActivity.this,Lichsumuahang.class);
+                startActivity(intent);
                 break;
             }
             case R.id.nav_login:{
@@ -217,6 +226,8 @@ public class MainActivity extends AppCompatActivity
                 break;
             }
             case R.id.nav_about:{
+                Intent intent =new Intent(MainActivity.this,About.class);
+                startActivity(intent);
                 break;
             }
         }

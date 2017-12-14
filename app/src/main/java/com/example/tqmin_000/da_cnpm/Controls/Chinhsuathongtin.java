@@ -126,6 +126,7 @@ public class Chinhsuathongtin extends AppCompatActivity {
                     if(user.getSex().equals(1)){
                         radioButton2.setChecked(true);
                     }else radioButton1.setChecked(true);
+                    encodedImage=user.getImg();
                     if(user.getImg()!=null) {
                         byte[] decodeString = Base64.decode(user.getImg(), Base64.DEFAULT);
                         Bitmap decodebitmap = BitmapFactory.decodeByteArray(decodeString,
