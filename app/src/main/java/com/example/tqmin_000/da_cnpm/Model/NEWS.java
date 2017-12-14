@@ -8,6 +8,7 @@ public class NEWS {
     int idnews;
     String tile;
     String noidung;
+    String img;
 
     public NEWS() {
     }
@@ -34,5 +35,13 @@ public class NEWS {
 
     public void setNoidung(String noidung) {
         this.noidung = noidung;
+    }
+
+    public String getImg() {
+        return img;
+    }
+
+    public void setImg(String img) {
+        this.img = img;
     }
 }
